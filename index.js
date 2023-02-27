@@ -8,11 +8,11 @@ app.use(cors());
 
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
+const io = new Server(server);
+
+app.get("/", (req, res) => {
+  res.write(`<h1>Samsung</h1>`);
+  res.end();
 });
 
 io.on("connection", (socket) => {
