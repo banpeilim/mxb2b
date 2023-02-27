@@ -15,12 +15,6 @@ app.get("/", (req, res) => {
   res.end();
 });
 
-io.on("connection", (socket) => {
-  socket.on("send_message", () => {
-    socket.emit("receive_message", "This is Lim Ban Pei");
-  });
-});
-
-server.listen(3001, () => {
+server.listen(3000, () => {
   console.log("SERVER IS RUNNING");
 });
