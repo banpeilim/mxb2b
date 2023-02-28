@@ -15,6 +15,11 @@ const io = new Server(server, {
   },
 });
 
+app.get("/emit-event", (req, res) => {
+  io.emit("my-event", "Tizen OS");
+  res.send("Event emitted!");
+});
+
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
