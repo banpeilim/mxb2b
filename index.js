@@ -4,13 +4,13 @@ const express = require("express");
 // Creating an instance of the Express app
 const app = express();
 
-// Handling GET requests
+// Handling GET requests to the root URL
 app.get("/", (req, res) => {
-  // Sending a response
   res.send("<h1>Hello, world!</h1>");
 });
 
 // Starting the server
-app.listen(3000, () => {
-  console.log("Server listening on port 3000.");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}.`);
 });
