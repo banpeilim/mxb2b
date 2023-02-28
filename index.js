@@ -1,16 +1,29 @@
-// Importing required packages
 const express = require("express");
-
-// Creating an instance of the Express app
 const app = express();
+const http = require("http");
+const { Server } = require("socket.io");
+const cors = require("cors");
 
-// Handling GET requests to the root URL
-app.get("/", (req, res) => {
-  res.send("<h1>Hello, world!</h1>");
+app.use(cors());
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
 
-// Starting the server
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    socket.emit("receive_message", data);
+  });
+});
+
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}.`);
+server.listen(port, () => {
+  console.log("SERVER IS RUNNING");
 });
