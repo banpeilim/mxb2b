@@ -45,6 +45,11 @@ app.get("/emit-event_6", (req, res) => {
   res.send("Event_6 emitted");
 });
 
+app.get("/emit-event_7", (req, res) => {
+  io.emit("my-event_7", "Tizen OS");
+  res.send("Event_7 emitted");
+});
+
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
