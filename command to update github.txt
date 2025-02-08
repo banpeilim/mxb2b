@@ -1,0 +1,5 @@
+To push changes:
+
+git add .
+git commit -m "xxxxx"
+git push origin main
